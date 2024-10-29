@@ -1,10 +1,17 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Post\IndexController;
 use App\Http\Controllers\Page\AboutController;
 use App\Http\Controllers\Page\ContactController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Post\PostCreateController;
+use App\Http\Controllers\Admin\Post\PostDestroyController;
+use App\Http\Controllers\Admin\Post\PostEditController;
+use App\Http\Controllers\Admin\Post\PostController;
+use App\Http\Controllers\Admin\Post\PostShowController;
+use App\Http\Controllers\Admin\Post\PostStoreController;
+use App\Http\Controllers\Admin\Post\PostUpdateController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -34,4 +41,14 @@ Route::group(['namespace' => 'Page'], function () {
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('/', [AdminController::class, '__invoke'])->name('admin');
+
+    Route::group(['namespace' => 'Post'], function () {
+        Route::get('/post', [PostController::class, '__invoke'])->name('admin.post.index');
+        Route::get('/post/create', [PostCreateController::class, '__invoke'])->name('admin.post.create');
+        Route::post('/post', [PostStoreController::class, '__invoke'])->name('admin.post.store');
+        Route::get('/post/{post}', [PostShowController::class, '__invoke'])->name('admin.post.show');
+        Route::get('/post/{post}/edit', [PostEditController::class, '__invoke'])->name('admin.post.edit');
+        Route::patch('/post/{post}', [PostUpdateController::class, '__invoke'])->name('admin.post.update');
+        Route::delete('/post/{post}', [PostDestroyController::class, '__invoke'])->name('admin.post.delete');
+    });
 });
