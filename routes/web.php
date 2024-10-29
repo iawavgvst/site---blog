@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Post\IndexController;
 use App\Http\Controllers\Page\AboutController;
@@ -29,4 +30,8 @@ Route::group(['namespace' => 'Post'], function () {
 Route::group(['namespace' => 'Page'], function () {
     Route::get('/about', [AboutController::class, '__invoke'])->name('about');
     Route::get('/contact', [ContactController::class, '__invoke'])->name('contact');
+});
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::get('/', [AdminController::class, '__invoke'])->name('admin');
 });
