@@ -53,7 +53,7 @@ Route::group(['namespace' => 'Page'], function () {
     Route::get('/contact', [ContactController::class, '__invoke'])->name('contact');
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth','admin']], function () {
     Route::get('/', [AdminController::class, '__invoke'])->name('admin');
 
     Route::group(['namespace' => 'User'], function () {
