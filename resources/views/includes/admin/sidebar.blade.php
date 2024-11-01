@@ -2,7 +2,7 @@
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-header">Elements</li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.user.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-sharp fa-solid fa-users"></i>
                 <p>
                     Users
