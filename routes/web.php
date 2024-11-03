@@ -22,6 +22,9 @@ use App\Http\Controllers\Admin\User\UserShowController;
 use App\Http\Controllers\Admin\User\UserStoreController;
 use App\Http\Controllers\Admin\User\UserUpdateController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Account\Like\LikeController;
+use App\Http\Controllers\Account\Comment\CommentController;
+use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Post\IndexController;
 use App\Http\Controllers\Page\AboutController;
 use App\Http\Controllers\Page\ContactController;
@@ -40,7 +43,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -53,7 +56,19 @@ Route::group(['namespace' => 'Page'], function () {
     Route::get('/contact', [ContactController::class, '__invoke'])->name('contact');
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth','admin']], function () {
+Route::group(['namespace' => 'Account', 'prefix' => 'account', 'middleware' => ['auth', 'verified']], function () {
+    Route::get('/', [AccountController::class, '__invoke'])->name('account');
+
+    Route::group(['namespace' => 'Like'], function () {
+        Route::get('/likes', [LikeController::class, '__invoke'])->name('account.like.index');
+    });
+
+    Route::group(['namespace' => 'Comment'], function () {
+        Route::get('/comments', [CommentController::class, '__invoke'])->name('account.comment.index');
+    });
+});
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth','admin', 'verified']], function () {
     Route::get('/', [AdminController::class, '__invoke'])->name('admin');
 
     Route::group(['namespace' => 'User'], function () {
