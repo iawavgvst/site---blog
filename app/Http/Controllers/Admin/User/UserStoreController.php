@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\User\BaseController;
 use App\Http\Requests\User\StoreRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserStoreController extends BaseController
 {
@@ -13,9 +14,11 @@ class UserStoreController extends BaseController
     {
         $data = $request->validated();
 
-        $data['password'] = Hash::make($data['password']);
+        $password = Str::random(13);
 
-        $this->service->store($data);
+        $data['password'] = Hash::make($password);
+
+        $this->service->store($data, $password);
 
         return redirect()->route('admin.user.index');
     }
