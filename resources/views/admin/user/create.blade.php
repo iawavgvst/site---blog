@@ -49,16 +49,6 @@
                             @enderror
                     </div>
 
-                        <div class="form-group w-75">
-                            <label for="password">Password</label>
-                            <input value="{{ old('password') }}" class="form-control" name="password" id="password" type="text"
-                                   placeholder="Password" style="margin-bottom: 15px"/>
-
-                            @error('password')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-
                         <div class="form-group w-50" style="margin-bottom: 35px">
                             <label for="role">Choose role</label>
                             <select class="form-control" id="role" name="role">
