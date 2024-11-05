@@ -8,6 +8,7 @@ class LikeController extends BaseController
 {
     public function __invoke()
     {
-        return view('account.like.index');
+        $posts = auth()->user()->likedPosts;
+        return view('account.like.index', compact('posts'));
     }
 }

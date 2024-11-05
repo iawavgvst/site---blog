@@ -9,10 +9,10 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('account.like.index') }}" class="nav-link">
+            <a href="{{ route('account.liked.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-solid fa-heart"></i>
                 <p>
-                    Likes
+                    Liked posts
                 </p>
             </a>
         </li>

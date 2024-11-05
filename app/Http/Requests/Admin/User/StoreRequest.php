@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Admin\User;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'email' => 'required|string|email|unique:users,email,' . $this->user_id,
-            'user_id' => 'required|integer|exists:users,id',
-            'password' => 'required|string',
+            'email' => 'required|string|email|unique:users',
             'role' => 'required|integer',
         ];
     }
@@ -40,8 +38,6 @@ class UpdateRequest extends FormRequest
             'email.string' => 'The e-mail address should be a string',
             'email.email' => 'The e-mail address should be in "example@some.domain" format',
             'email.unique' => 'The user with that e-mail address already exists',
-            'password.required' => 'This field is required',
-            'password.string' => 'The password should be a string',
         ];
     }
 }
