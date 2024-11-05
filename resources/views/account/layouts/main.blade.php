@@ -70,7 +70,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href="#" class="d-block">Your Personal Account</a>
+                    <a href="#" class="d-block">Welcome!</a>
                 </div>
             </div>
 

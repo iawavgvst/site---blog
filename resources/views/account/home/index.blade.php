@@ -13,7 +13,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item active">Home</li>
-                            <li class="breadcrumb-item"><a href="{{ route('account.like.index') }}">Likes</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('account.liked.index') }}">Liked posts</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('account.comment.index') }}">Comments</a>
                             </li>
                         </ol>
@@ -34,12 +34,12 @@
                             <div class="inner">
                                 <h3>135</h3>
 
-                                <p>Likes</p>
+                                <p>Liked posts</p>
                             </div>
                             <div class="icon">
                                 <i class="nav-icon fas fa-solid fa-heart"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('account.liked.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -54,7 +54,7 @@
                             <div class="icon">
                                 <i class="nav-icon fas fa-solid fa-comment"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('account.comment.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->

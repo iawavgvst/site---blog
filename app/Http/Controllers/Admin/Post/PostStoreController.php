@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Post;
 
-use App\Http\Controllers\Admin\Post\BaseController;
-use App\Http\Requests\Post\StoreRequest;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\Post\StoreRequest;
 
 class PostStoreController extends BaseController
 {

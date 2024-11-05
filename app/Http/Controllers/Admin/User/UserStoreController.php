@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin\User;
 
-use App\Http\Controllers\Admin\User\BaseController;
-use App\Http\Requests\User\StoreRequest;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\User\StoreRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 

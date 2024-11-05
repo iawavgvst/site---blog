@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Account\Comment\CommentDestroyController;
+use App\Http\Controllers\Account\Comment\CommentEditController;
+use App\Http\Controllers\Account\Comment\CommentUpdateController;
+use App\Http\Controllers\Account\Like\LikeDestroyController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Category\CategoryCreateController;
 use App\Http\Controllers\Admin\Category\CategoryDestroyController;
@@ -60,11 +64,15 @@ Route::group(['namespace' => 'Account', 'prefix' => 'account', 'middleware' => [
     Route::get('/', [AccountController::class, '__invoke'])->name('account');
 
     Route::group(['namespace' => 'Like'], function () {
-        Route::get('/likes', [LikeController::class, '__invoke'])->name('account.like.index');
+        Route::get('/liked', [LikeController::class, '__invoke'])->name('account.liked.index');
+        Route::delete('/liked/{post}', [LikeDestroyController::class, '__invoke'])->name('account.liked.delete');
     });
 
     Route::group(['namespace' => 'Comment'], function () {
         Route::get('/comments', [CommentController::class, '__invoke'])->name('account.comment.index');
+        Route::get('/comments/{comment}/edit', [CommentEditController::class, '__invoke'])->name('account.comment.edit');
+        Route::patch('/comments/{comment}', [CommentUpdateController::class, '__invoke'])->name('account.comment.update');
+        Route::delete('/comments/{comment}', [CommentDestroyController::class, '__invoke'])->name('account.comment.delete');
     });
 });
 
