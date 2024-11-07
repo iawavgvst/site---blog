@@ -29,9 +29,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Account\Like\LikeController;
 use App\Http\Controllers\Account\Comment\CommentController;
 use App\Http\Controllers\Account\AccountController;
-use App\Http\Controllers\Post\IndexController;
 use App\Http\Controllers\Page\AboutController;
 use App\Http\Controllers\Page\ContactController;
+use App\Http\Controllers\Post\IndexController;
+use App\Http\Controllers\Post\ShowController;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['namespace' => 'Post'], function () {
     Route::get('/', [IndexController::class, '__invoke'])->name('post');
+    Route::get('/post/{post}', [ShowController::class, '__invoke'])->name('post.show');
 });
 
 Route::group(['namespace' => 'Page'], function () {

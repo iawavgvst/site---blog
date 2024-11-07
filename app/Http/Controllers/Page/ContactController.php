@@ -9,6 +9,6 @@ class ContactController extends Controller
 {
     public function __invoke()
     {
-        return view('page.contact');
+        return view('blog.page.contact');
     }
 }

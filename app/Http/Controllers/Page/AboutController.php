@@ -9,6 +9,6 @@ class AboutController extends Controller
 {
     public function __invoke()
     {
-        return view('page.about');
+        return view('blog.page.about');
     }
 }
