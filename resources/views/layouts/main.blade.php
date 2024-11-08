@@ -33,20 +33,39 @@
                 <li class="nav-item "><a class="nav-link px-lg-3 py-3 py-lg-4" style="font-family: Arial,serif; font-size: 12px" href="{{ route('post') }}">Content</a></li>
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="font-family: Arial,serif; font-size: 12px" href="{{ route('about') }}">About</a></li>
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="font-family: Arial,serif; font-size: 12px" href="{{ route('contact') }}">Contact</a></li>
+                <li class="nav-item">
+                    @auth()
+                        <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-family: Arial,serif; font-size: 12px"
+                           href="{{ route('account') }}">Account</a>
+                    @endauth
+                </li>
             </ul>
             <ul class="navbar-nav py-4 py-lg-0">
                 <li class="nav-item">
-                    @guest ()
-                        <a href="{{ route('login') }}" class="btn btn-success text-uppercase"
-                           style="font-weight: bold; font-family: Arial,sans-serif">Status: Log In</a>
-                    @else
-                        <form action="{{ route('logout') }}" method="post">
+                    @guest()
+                        <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-family: Arial,serif; font-size: 12px"
+                           href="{{ route('login') }}">Log In</a>
+                        @else
+                            <form action="{{ route('logout') }}" method="post">
                             @csrf
-                            <input class="btn btn-danger text-uppercase" type="submit" value="Status: Log Out"
-                                   style="font-weight: bold; font-family: Arial,sans-serif">
-                        </form>
+                                <input class="btn btn-danger text-uppercase" type="submit" value="Status: Log Out"
+                                       style="font-weight: bold; font-family: Arial,sans-serif">
+                            </form>
                     @endguest
                 </li>
+                {{--                Второй способ для отображения кнопки входа и выхода--}}
+                {{--                <li class="nav-item">--}}
+                {{--                    @guest ()--}}
+                {{--                        <a href="{{ route('login') }}" class="btn btn-success text-uppercase"--}}
+                {{--                           style="font-weight: bold; font-family: Arial,sans-serif">Status: Log In</a>--}}
+                {{--                    @else--}}
+                {{--                        <form action="{{ route('logout') }}" method="post">--}}
+                {{--                            @csrf--}}
+                {{--                            <input class="btn btn-danger text-uppercase" type="submit" value="Status: Log Out"--}}
+                {{--                                   style="font-weight: bold; font-family: Arial,sans-serif">--}}
+                {{--                        </form>--}}
+                {{--                    @endguest--}}
+                {{--                </li>--}}
             </ul>
         </div>
     </div>
