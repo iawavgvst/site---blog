@@ -27,11 +27,12 @@
                             <h2 class="post-title">{{ $post->title }}</h2>
                             <h3 class="post-subtitle">{{ $post->description }}</h3>
                         </a>
+                        <p class="post-meta">#{{ $post->category->title }} | Posted on {{ $date->format('F') }} {{ $date->day }}, {{ $date->year }}</p>
                         <div class="mb-5">
-                            <p class="blog-post-category">#{{ $post->category->title }} | </p>
                             <form action="#!">
                                 <button type="submit" class="border-0 bg-transparent">
                                     <i class="fa-regular fa-heart" style="color: red"></i>
+                                    {{ $post->likedUsers->count() }} likes
                                 </button>
                             </form>
                         </div>
