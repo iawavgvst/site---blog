@@ -32,8 +32,12 @@
                             <form action="#!">
                                 <button type="submit" class="border-0 bg-transparent">
                                     <i class="fa-regular fa-heart" style="color: red"></i>
-                                    {{ $post->likedUsers->count() }} likes
+                                    {{ $post->likedUsers->count() }} likes |
                                 </button>
+                                <a href="{{ route('post.show', $post->id) }}">
+                                <i class="fa-regular fa-comment" style="color: blue"></i>
+                                {{ $post->comments->count() }} comments
+                                </a>
                             </form>
                         </div>
                     @endforeach

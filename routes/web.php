@@ -31,6 +31,7 @@ use App\Http\Controllers\Account\Comment\CommentController;
 use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Page\AboutController;
 use App\Http\Controllers\Page\ContactController;
+use App\Http\Controllers\Post\Comment\PostCommentStoreController;
 use App\Http\Controllers\Post\IndexController;
 use App\Http\Controllers\Post\ShowController;
 use App\Http\Controllers\Admin\AdminController;
@@ -55,6 +56,10 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::group(['namespace' => 'Post'], function () {
     Route::get('/', [IndexController::class, '__invoke'])->name('post');
     Route::get('/post/{post}', [ShowController::class, '__invoke'])->name('post.show');
+//localhost:98/post/15/comments - nested routes
+    Route::group(['namespace' => 'Comment', 'prefix' => '{post}/comments'], function () {
+        Route::post('/', [PostCommentStoreController::class, '__invoke'])->name('post.comment.store');
+    });
 });
 
 Route::group(['namespace' => 'Page'], function () {
