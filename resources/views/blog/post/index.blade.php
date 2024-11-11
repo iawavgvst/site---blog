@@ -29,15 +29,24 @@
                         </a>
                         <p class="post-meta">#{{ $post->category->title }} | Posted on {{ $date->format('F') }} {{ $date->day }}, {{ $date->year }}</p>
                         <div class="mb-5">
-                            <form action="#!">
+                            <form action="{{ route('post.like.store', $post->id) }}" method="post">
+                                @csrf
+                                @auth()
                                 <button type="submit" class="border-0 bg-transparent">
-                                    <i class="fa-regular fa-heart" style="color: red"></i>
+                                        @if (auth()->user()->likedPosts->contains($post->id))
+                                            <i class="fa-solid fa-heart" style="color: red"></i>
+                                        @else
+                                            <i class="fa-regular fa-heart" style="color: red"></i>
+                                        @endif
                                     {{ $post->likedUsers->count() }} likes |
                                 </button>
-                                <a href="{{ route('post.show', $post->id) }}">
-                                <i class="fa-regular fa-comment" style="color: blue"></i>
-                                {{ $post->comments->count() }} comments
-                                </a>
+                                @endauth
+                                @guest()
+                                    <i class="fa-regular fa-heart" style="color: red"></i>
+                                    {{ $post->likedUsers->count() }} likes |
+                                @endguest
+                                    <i class="fa-regular fa-comment" style="color: blue"></i>
+                                    {{ $post->comments->count() }} comments
                             </form>
                         </div>
                     @endforeach

@@ -13,13 +13,25 @@
                             on {{ $date->format('F') }} {{ $date->day }}, {{ $date->year }}
                         </p>
                         <div>
-                            <form action="#!">
+                            <form action="{{ route('post.like.store', $post->id) }}" method="post">
+                                @csrf
+                                @auth()
                                 <button type="submit" class="border-0 bg-transparent" style="color: white">
-                                    <i class="fa-regular fa-heart" style="color: red"></i>
+                                        @if (auth()->user()->likedPosts->contains($post->id))
+                                            <i class="fa-solid fa-heart" style="color: red"></i>
+                                        @else
+                                            <i class="fa-regular fa-heart" style="color: red"></i>
+                                        @endif
                                     {{ $post->likedUsers->count() }} likes |
                                 </button>
+                                @endauth
+                                @guest()
+                                    <i class="fa-regular fa-heart" style="color: red"></i>
+                                    {{ $post->likedUsers->count() }} likes |
+                                @endguest
                             <i class="fa-regular fa-comment" style="color: blue"></i>
                             {{ $post->comments->count() }} comments
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -53,6 +65,7 @@
                                                                              href="{{ route('post') }}">← Back</a>
                     </div>
 
+                    @if ($relatedPosts->count() > 0)
                     <!-- Divider-->
                     <hr class="my-4">
 
@@ -72,13 +85,17 @@
                                     <p class="post-category" style="font-style: italic; font-size: small">
                                         #{{ $relatedPost->category->title }} |
                                         <i class="fa-regular fa-heart" style="color: red"></i>
-                                        {{ $relatedPost->likedUsers->count() }} likes
+                                        {{ $relatedPost->likedUsers->count() }} likes,
+                                        <i class="fa-regular fa-comment" style="color: blue"></i>
+                                        {{ $relatedPost->comments->count() }} comments
                                     </p>
                                 </div>
                             @endforeach
                         </div>
                     </section>
+                    @endif
 
+                    @if($post->comments->count() > 0)
                     <!-- Divider-->
                     <hr class="my-4">
 
@@ -86,6 +103,7 @@
                     <section class="comment-list mb-5 mt-5">
                         <h3 class="section-title mb-4 aos-init aos-animate" data-aos="fade-up">Comments
                             ({{ $post->comments->count() }})</h3>
+                    @endif
                         @foreach($post->comments as $comment)
                             <div class="comment-text mb-3">
                                 <span class="username">
