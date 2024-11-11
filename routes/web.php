@@ -33,6 +33,7 @@ use App\Http\Controllers\Page\AboutController;
 use App\Http\Controllers\Page\ContactController;
 use App\Http\Controllers\Post\Comment\PostCommentStoreController;
 use App\Http\Controllers\Post\IndexController;
+use App\Http\Controllers\Post\Like\PostLikeStoreController;
 use App\Http\Controllers\Post\ShowController;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,10 @@ Route::group(['namespace' => 'Post'], function () {
 //localhost:98/post/15/comments - nested routes
     Route::group(['namespace' => 'Comment', 'prefix' => '{post}/comments'], function () {
         Route::post('/', [PostCommentStoreController::class, '__invoke'])->name('post.comment.store');
+    });
+
+    Route::group(['namespace' => 'Like', 'prefix' => '{post}/likes'], function () {
+        Route::post('/', [PostLikeStoreController::class, '__invoke'])->name('post.like.store');
     });
 });
 
