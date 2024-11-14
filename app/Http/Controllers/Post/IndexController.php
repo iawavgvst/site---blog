@@ -12,7 +12,7 @@ class IndexController extends Controller
     public function __invoke(Post $post)
     {
         $posts = Post::all();
-        $likedPosts = Post::withCount('likedUsers')->orderBy('liked_users_count', 'DESC')->get()->take(15);
+        $likedPosts = Post::withCount('likedUsers')->orderBy('liked_users_count', 'DESC')->get()->take(17);
         $date = Carbon::parse($post->created_at);
         return view('blog.post.index', compact('posts', 'likedPosts', 'date'));
     }
