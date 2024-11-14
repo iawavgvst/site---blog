@@ -58,6 +58,38 @@
                         @enderror
                     </div>
 
+                    <div class="form-group w-50">
+                        <label for="background_image">Background image</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input value="{{ old('background_image') }}" type="file" class="custom-file-input" id="background_image" name="background_image">
+                                <label class="custom-file-label" for="background_image">Choose image</label>
+                                @error('background_image')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Upload</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group w-50">
+                        <label for="preview_image">Preview image</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input value="{{ old('preview_image') }}" type="file" class="custom-file-input" id="preview_image" name="preview_image">
+                                <label class="custom-file-label" for="preview_image">Choose image</label>
+                                @error('preview_image')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Upload</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group w-50" style="margin-bottom: 35px">
                         <label for="category">Category</label>
                         <select class="form-control" id="category" name="category_id">

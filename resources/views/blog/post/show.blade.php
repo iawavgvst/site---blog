@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Page Header-->
-    <header class="masthead" style="background-image: url( {{ asset('assets/img/post-bg.jpg') }} )">
+    <header class="masthead" style="background-image: url( {{ asset('public/9sBJ5PpVSlUS1pjp75Ng6SBt2m2uWeJLRE2LHYXK.jpg') }} )">
         <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
@@ -76,19 +76,21 @@
                         <div class="row">
                             @foreach($relatedPosts as $relatedPost)
                                 <div class="col-md-4 aos-init aos-animate" data-aos="fade-right" data-aos-delay="100">
-                                    <img src="#" alt="related post" class="post-thumbnail">
+                                    <img src="{{ asset('public/AJNFHfjDEDqkoR6u4ZWbyGlRARxRiXhXw9XStRmB.jpg') }}"
+                                         alt="related post" class="post-thumbnail" width="210" height="150"
+                                         style="margin-bottom: 15px">
                                     <a href="{{ route('post.show', $relatedPost->id) }}">
                                         <h4 class="post-title">{{ $relatedPost->title }}</h4>
                                         <p class="post-subtitle"
-                                           style="font-size: small">{{ $relatedPost->description }}</p>
+                                           style="margin-top: 10px; font-size: small">{{ $relatedPost->description }}</p>
+                                        <p class="post-category" style="font-style: italic; font-size: small">
+                                            #{{ $relatedPost->category->title }} |
+                                            <i class="fa-regular fa-heart" style="color: red"></i>
+                                            {{ $relatedPost->likedUsers->count() }} likes,
+                                            <i class="fa-regular fa-comment" style="color: blue"></i>
+                                            {{ $relatedPost->comments->count() }} comments
+                                        </p>
                                     </a>
-                                    <p class="post-category" style="font-style: italic; font-size: small">
-                                        #{{ $relatedPost->category->title }} |
-                                        <i class="fa-regular fa-heart" style="color: red"></i>
-                                        {{ $relatedPost->likedUsers->count() }} likes,
-                                        <i class="fa-regular fa-comment" style="color: blue"></i>
-                                        {{ $relatedPost->comments->count() }} comments
-                                    </p>
                                 </div>
                             @endforeach
                         </div>

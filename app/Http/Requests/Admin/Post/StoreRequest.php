@@ -25,6 +25,8 @@ class StoreRequest extends FormRequest
             'title' => 'required|string',
             'description' => 'string',
             'content' => 'required|string',
+            'preview_image' => 'required|file',
+            'background_image' => 'required|file',
             'category_id' => '',
         ];
     }

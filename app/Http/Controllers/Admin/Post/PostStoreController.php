@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Post;
 
 use App\Http\Requests\Admin\Post\StoreRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PostStoreController extends BaseController
 {
