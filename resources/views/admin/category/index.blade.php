@@ -15,7 +15,8 @@
                             <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('admin.user.index') }}">Users</a></li>
                             <li class="breadcrumb-item"><a href={{ route('admin.post.index') }}>Posts</a></li>
-                            <li class="breadcrumb-item  active">Categories</li>
+                            <li class="breadcrumb-item active">Categories</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.message.index') }}">Messages</a></li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->

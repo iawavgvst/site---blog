@@ -27,5 +27,14 @@
                 <span class="badge badge-info right"></span>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.message.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-solid fa-envelope"></i>
+                <p>
+                    Messages
+                </p>
+                <span class="badge badge-info right"></span>
+            </a>
+        </li>
     </ul>
 </nav>
