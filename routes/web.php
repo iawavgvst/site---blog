@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\Account\AccountController;
+use App\Http\Controllers\Account\Comment\CommentController;
 use App\Http\Controllers\Account\Comment\CommentDestroyController;
 use App\Http\Controllers\Account\Comment\CommentEditController;
 use App\Http\Controllers\Account\Comment\CommentUpdateController;
+use App\Http\Controllers\Account\Like\LikeController;
 use App\Http\Controllers\Account\Like\LikeDestroyController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Category\CategoryCreateController;
 use App\Http\Controllers\Admin\Category\CategoryDestroyController;
@@ -11,6 +15,9 @@ use App\Http\Controllers\Admin\Category\CategoryEditController;
 use App\Http\Controllers\Admin\Category\CategoryShowController;
 use App\Http\Controllers\Admin\Category\CategoryStoreController;
 use App\Http\Controllers\Admin\Category\CategoryUpdateController;
+use App\Http\Controllers\Admin\Message\MessageController;
+use App\Http\Controllers\Admin\Message\MessageDestroyController;
+use App\Http\Controllers\Admin\Message\MessageShowController;
 use App\Http\Controllers\Admin\Post\PostController;
 use App\Http\Controllers\Admin\Post\PostCreateController;
 use App\Http\Controllers\Admin\Post\PostDestroyController;
@@ -26,16 +33,13 @@ use App\Http\Controllers\Admin\User\UserShowController;
 use App\Http\Controllers\Admin\User\UserStoreController;
 use App\Http\Controllers\Admin\User\UserUpdateController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Account\Like\LikeController;
-use App\Http\Controllers\Account\Comment\CommentController;
-use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Page\AboutController;
+use App\Http\Controllers\Page\Contact\ContactStoreController;
 use App\Http\Controllers\Page\ContactController;
 use App\Http\Controllers\Post\Comment\PostCommentStoreController;
 use App\Http\Controllers\Post\IndexController;
 use App\Http\Controllers\Post\Like\PostLikeStoreController;
 use App\Http\Controllers\Post\ShowController;
-use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -69,7 +73,12 @@ Route::group(['namespace' => 'Post'], function () {
 
 Route::group(['namespace' => 'Page'], function () {
     Route::get('/about', [AboutController::class, '__invoke'])->name('about');
+
     Route::get('/contact', [ContactController::class, '__invoke'])->name('contact');
+//feedback from users
+    Route::group(['namespace' => 'Contact'], function () {
+        Route::post('/contact/submit', [ContactStoreController::class, '__invoke'])->name('contact-form');
+    });
 });
 
 Route::group(['namespace' => 'Account', 'prefix' => 'account', 'middleware' => ['auth', 'verified']], function () {
@@ -119,5 +128,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::get('/category/{category}/edit', [CategoryEditController::class, '__invoke'])->name('admin.category.edit');
         Route::patch('/category/{category}', [CategoryUpdateController::class, '__invoke'])->name('admin.category.update');
         Route::delete('/category/{category}', [CategoryDestroyController::class, '__invoke'])->name('admin.category.delete');
+    });
+
+    Route::group(['namespace' => 'Message'], function () {
+        Route::get('/message', [MessageController::class, '__invoke'])->name('admin.message.index');
+        Route::get('/message/{message}', [MessageShowController::class, '__invoke'])->name('admin.message.show');
+        Route::delete('/message/{message}', [MessageDestroyController::class, '__invoke'])->name('admin.message.delete');
     });
 });
