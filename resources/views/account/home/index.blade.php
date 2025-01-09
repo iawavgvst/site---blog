@@ -32,9 +32,9 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>135</h3>
+                                <h3>Likes</h3>
 
-                                <p>Liked posts</p>
+                                <p>by User</p>
                             </div>
                             <div class="icon">
                                 <i class="nav-icon fas fa-solid fa-heart"></i>
@@ -47,9 +47,9 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>28<sup style="font-size: 20px"></sup></h3>
+                                <h3>Comments<sup style="font-size: 20px"></sup></h3>
 
-                                <p>Comments</p>
+                                <p>by User</p>
                             </div>
                             <div class="icon">
                                 <i class="nav-icon fas fa-solid fa-comment"></i>
